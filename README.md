@@ -2,6 +2,7 @@
 
 Static, responsive storefront demo built with HTML, CSS, and vanilla JavaScript.
 Product images and web fonts are loaded from external services.
+The interface icons come from Lucide; see [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md).
 
 ## Local use
 
