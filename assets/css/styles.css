@@ -43,6 +43,14 @@ svg[class*="text-ink/"] {
   color: #7c3aed;
 }
 
+svg > use {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 ::selection {
   background: var(--violet);
   color: #fff;
@@ -177,13 +185,13 @@ svg[class*="text-ink/"] {
   flex-shrink: 0;
   place-items: center;
   border-radius: 9999px;
-  color: #6d28d9;
+  color: #2563eb;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .icon-btn:hover {
-  background: #f3eaff;
-  color: #b83280;
+  background: #eff6ff;
+  color: #db2777;
 }
 
 .icon-btn:active {
@@ -230,7 +238,7 @@ svg[class*="text-ink/"] {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 9999px;
-  color: #6d28d9;
+  color: #2563eb;
   transition: all 0.2s ease;
 }
 
@@ -315,9 +323,9 @@ svg[class*="text-ink/"] {
   height: 2rem;
   flex-shrink: 0;
   border-radius: 0.65rem;
-  background: #f3e8ff;
+  background: #eff6ff;
   padding: 0.4rem;
-  color: #7c3aed;
+  color: #2563eb;
   transition: color 0.2s ease, background 0.2s ease;
 }
 
@@ -328,7 +336,7 @@ svg[class*="text-ink/"] {
 
 .mobile-nav-link:hover svg {
   background: #fce7f3;
-  color: #b83280;
+  color: #db2777;
 }
 
 .search-overlay {
