@@ -25,6 +25,6 @@ links, and publish accurate privacy, terms, shipping, and returns policies.
 
 ## Deploying to Vercel
 
-Import the GitHub repository into Vercel, choose **Other** as the framework,
-set the build command to `npm run build`, and set the output directory to `.`.
-Vercel will serve `index.html` and the generated assets as a static site.
+Import the GitHub repository into Vercel. The included `vercel.json` builds
+the production stylesheet with `npm run build` and serves the project root as a
+static site.
