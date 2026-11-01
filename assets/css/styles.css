@@ -1,6 +1,6 @@
 /* ==========================================================================
    HOUSE OF GINA — Core stylesheet
-   Tailwind CDN handles layout utilities; this file owns brand components,
+   Tailwind provides compiled layout utilities; this file owns brand components,
    motion, drawers/modals and small custom interactions.
    ========================================================================== */
 
@@ -16,6 +16,10 @@
   --cream: #fff9f0;
   --violet-50: #f5f3ff;
   --shadow-soft: 0 24px 60px -24px rgba(124, 58, 237, 0.35);
+  --glass-fill: rgba(255, 255, 255, 0.76);
+  --glass-edge: rgba(255, 255, 255, 0.82);
+  --glass-shadow: 0 18px 48px -30px rgba(31, 41, 55, 0.42);
+  --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -24,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   overflow-x: clip;
 }
 
@@ -107,12 +112,30 @@ svg[class*="text-ink/"] {
 }
 
 .site-header {
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  position: sticky;
+  isolation: isolate;
+  border-bottom-color: var(--glass-edge) !important;
+  background: var(--glass-fill) !important;
+  box-shadow: 0 8px 28px -26px rgba(31, 41, 55, 0.55);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  transition: box-shadow 0.35s var(--ease-fluid), background 0.35s var(--ease-fluid);
+}
+
+.site-header::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95) 18%, rgba(255, 255, 255, 0.65) 82%, transparent);
+  content: "";
+  pointer-events: none;
 }
 
 .site-header.scrolled {
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 12px 30px -20px rgba(31, 41, 55, 0.35);
+  background: rgba(255, 255, 255, 0.84) !important;
+  box-shadow: 0 12px 34px -24px rgba(31, 41, 55, 0.48);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  backdrop-filter: blur(30px) saturate(190%);
 }
 
 .logo-mark {
@@ -267,8 +290,11 @@ svg[class*="text-ink/"] {
   display: flex;
   width: min(420px, 100%);
   flex-direction: column;
-  background: #fff;
-  box-shadow: -24px 0 70px rgba(23, 17, 37, 0.18);
+  border-left: 1px solid var(--glass-edge);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: -24px 0 70px rgba(23, 17, 37, 0.2), inset 1px 0 rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(30px) saturate(175%);
+  backdrop-filter: blur(30px) saturate(175%);
   visibility: hidden;
   transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.42s;
 }
@@ -359,8 +385,13 @@ svg[class*="text-ink/"] {
 }
 
 .search-panel {
+  border-color: var(--glass-edge) !important;
+  background: rgba(255, 255, 255, 0.84) !important;
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
   transform: translateY(-18px);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.45s var(--ease-fluid);
 }
 
 .search-overlay.is-open .search-panel {
@@ -430,7 +461,7 @@ svg[class*="text-ink/"] {
   font-size: clamp(1.75rem, 4vw, 2.6rem);
   font-weight: 800;
   letter-spacing: -0.045em;
-  line-height: 1.05;
+  line-height: 1.08;
 }
 
 .gradient-text {
@@ -469,7 +500,7 @@ svg[class*="text-ink/"] {
   font-weight: 800;
   line-height: 1;
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  transition: transform 0.28s var(--ease-fluid), box-shadow 0.28s var(--ease-fluid), background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .btn:active {
@@ -613,11 +644,13 @@ svg[class*="text-ink/"] {
   width: 2.5rem;
   height: 2.5rem;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.42);
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.11));
   color: #fff;
-  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.35), 0 6px 20px rgba(23, 17, 37, 0.12);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
   transition: all 0.2s ease;
 }
 
@@ -687,11 +720,11 @@ svg[class*="text-ink/"] {
   min-width: 0;
   align-items: center;
   gap: 0.7rem;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(124, 58, 237, 0.08);
   border-radius: 1rem;
-  background: #fff;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(250, 248, 255, 0.88));
   padding: 0.8rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.32s var(--ease-fluid), box-shadow 0.32s var(--ease-fluid), border-color 0.25s ease;
 }
 
 .category-card:hover {
@@ -1001,7 +1034,7 @@ svg[class*="text-ink/"] {
 .testimonial-card {
   border: 1px solid rgba(31, 41, 55, 0.06);
   border-radius: 1.25rem;
-  background: #fff;
+  background: linear-gradient(145deg, #fff, #fdfbff);
   padding: 1.35rem;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -1306,7 +1339,7 @@ textarea.form-input {
   gap: 0.75rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
-  background: #fff;
+  background: linear-gradient(145deg, #fff, #fdfbff);
   padding: 0.8rem;
   transition: all 0.2s ease;
 }
@@ -1811,9 +1844,12 @@ a.contact-tile:hover {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.76);
   color: var(--ink);
   box-shadow: 0 10px 24px -12px rgba(31, 41, 55, 0.4);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
@@ -1857,11 +1893,17 @@ a.contact-tile:hover {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(23, 17, 37, 0.62);
-  backdrop-filter: blur(6px);
+  background: rgba(23, 17, 37, 0.48);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  backdrop-filter: blur(12px) saturate(125%);
 }
 
 .modal-card {
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 28px 80px -30px rgba(23, 17, 37, 0.5), inset 0 1px rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(26px) saturate(165%);
+  backdrop-filter: blur(26px) saturate(165%);
   opacity: 0;
   transform: translateY(16px) scale(0.985);
   transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -1919,9 +1961,12 @@ a.contact-tile:hover {
   gap: 0.6rem;
   border: 1px solid var(--line);
   border-radius: 0.85rem;
-  background: #fff;
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   padding: 0.7rem 0.85rem;
-  box-shadow: 0 18px 44px -16px rgba(31, 41, 55, 0.35);
+  box-shadow: var(--glass-shadow), inset 0 1px rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
   pointer-events: auto;
   animation: toastIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -1962,7 +2007,7 @@ a.contact-tile:hover {
 }
 
 .view {
-  animation: viewIn 0.35s ease;
+  animation: viewIn 0.45s var(--ease-fluid);
 }
 
 @keyframes viewIn {
@@ -2001,6 +2046,129 @@ a.contact-tile:hover {
 .modal-card::-webkit-scrollbar-thumb {
   border-radius: 9999px;
   background: rgba(124, 58, 237, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive rhythm + glass surfaces
+   -------------------------------------------------------------------------- */
+#view-home > section:not(.hero) {
+  padding-block: clamp(3rem, 5vw, 4rem) !important;
+}
+
+#view-shop .page-hero > .container-x,
+#view-shop > .container-x,
+#view-contact .page-hero > .container-x,
+#view-contact > .container-x {
+  padding-block: clamp(2.75rem, 4.5vw, 3.75rem) !important;
+}
+
+#view-admin .admin-dashboard {
+  padding-block: clamp(2rem, 4vw, 3rem) !important;
+}
+
+.site-header > .container-x,
+.site-header .header-row,
+.site-header .site-brand,
+.site-header .header-actions {
+  min-width: 0;
+}
+
+.header-row {
+  transition: height 0.35s var(--ease-fluid);
+}
+
+.header-actions {
+  flex-shrink: 0;
+}
+
+.category-card:focus-visible,
+.testimonial-card:focus-within,
+.contact-tile:focus-visible {
+  outline-offset: 3px;
+}
+
+@media (max-width: 639px) {
+  .site-header > .container-x {
+    padding-inline: 0.75rem;
+  }
+
+  .site-header .header-row {
+    gap: 0.25rem;
+  }
+
+  .site-header .site-brand {
+    gap: 0.45rem;
+  }
+
+  .site-header .site-brand .logo-mark {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.8rem;
+  }
+
+  .site-header .site-brand > span:nth-child(2) > span:first-child {
+    font-size: clamp(0.875rem, 4vw, 1rem);
+  }
+
+  .site-header .brand-subtitle {
+    letter-spacing: 0.2em;
+  }
+
+  .site-header .header-actions {
+    gap: 0 !important;
+  }
+
+  .site-header .header-actions .icon-btn {
+    width: 2.15rem;
+    height: 2.15rem;
+  }
+
+  .site-header #accountBtn {
+    display: none !important;
+  }
+
+  .hero .container-x {
+    padding-inline: 0.875rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 11vw, 2.7rem);
+  }
+
+  .whatsapp-float {
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .back-to-top {
+    right: max(0.9rem, env(safe-area-inset-right));
+    bottom: calc(4.75rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 359px) {
+  .site-header .site-brand .logo-mark {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .site-header .brand-subtitle {
+    display: none;
+  }
+
+  .site-header .site-brand > span:nth-child(2) > span:first-child {
+    font-size: 0.8125rem;
+  }
+
+  .site-header .header-actions .icon-btn {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .site-header .header-actions .icon-btn svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
 }
 
 /* Reduced motion */
